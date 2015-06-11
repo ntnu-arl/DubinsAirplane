@@ -18,6 +18,7 @@ Run the example script "DubinsAirplaneMain.py" in which, one of the 16 supported
 In the same file, the filename to save the path result (*fname*) can be edited while flags related with plotting (*plot_flag*) and execution verbosity (*verbose_flag*) can be set.
 
 *Example result:*
-![Dubins Airplane Case #8](http://www.imageno.com/r7sl6s6w6bz4pic.html)
+![Dubins Airplane Case #8](https://dl.dropboxusercontent.com/u/3647281/DubinsAirplaneCase8.png)
+
 **Contact**
 [Kostas Alexis](mailto:konstantinos.alexis@gmail.com)

@@ -20,5 +20,5 @@ In the same file, the filename to save the path result (*fname*) can be edited w
 *Example result:*
 ![Dubins Airplane Case #8](https://dl.dropboxusercontent.com/u/3647281/DubinsAirplaneCase8.png)
 
-**Contact**
-[Kostas Alexis](mailto:konstantinos.alexis@gmail.com)
+**Contact:**
+* [Kostas Alexis](mailto:konstantinos.alexis@gmail.com)

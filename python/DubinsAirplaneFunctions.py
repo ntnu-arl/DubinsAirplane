@@ -187,7 +187,7 @@ def computeOptimalRadius(zs=None, anglstart=None, ze=None, anglend=None, R_min=N
 def MinTurnRadius_DubinsAirplane(V=None,phi_max=None):
     # Compute Minimum Turning Radius
     g = 9.8065
-    Rmin = tan( phi_max ) * pow( V,2 ) / g
+    Rmin = pow( V,2 ) / (g * tan( phi_max ) )
     return Rmin
 
 def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gamma_max=None, idx=None, hdist=None):

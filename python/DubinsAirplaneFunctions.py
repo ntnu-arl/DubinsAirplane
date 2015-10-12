@@ -281,7 +281,7 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
     elif idx == 4: # LRSL
         cls = zs + R_min * np.dot( rotz( -pi/2 ), np.array( [cos(anglstart), sin(anglstart), 0] ).T )
         cle = ze + R_min * np.dot( rotz( -pi/2 ), np.array( [cos(anglend), sin(anglend), 0] ).T )
-        # above modified by liucz 2015-10-12, spell mistake
+        # above modified by liucz 2015-10-12, fix spell mistake cre -> cle
         # origin is "cre = ze + R_min * np.dot( rotz( -pi/2 ), np.array( [cos(anglend), sin(anglend), 0] ).T )"
         L = computeDubinsLSL( R_min, cls, cle, anglstart, anglend )
         error = L - fabs( hdist / tan( gamma_max ) )
@@ -290,7 +290,7 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
             zi = cls + np.dot( rotz( -psi ), ( zs-cls ) )
             anglinter = anglstart - psi
             cri = zi + R_min * np.dot( rotz( pi / 2 ), np.array( [cos(anglinter), sin(anglinter), 0 ] ).T )
-            # above is modified by licz 2015-10-12, write mistake
+            # above is modified by licz 2015-10-12, fix written mistake np.array -> np.dot
             # origin is "cri = zi + R_min * np.array( rotz( pi / 2 ), np.array( [cos(anglinter), sin(anglinter), 0 ] ).T )"
             L = computeDubinsRSL( R_min, cri, cle, anglinter, anglend )
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max) )

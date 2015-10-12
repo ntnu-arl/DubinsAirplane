@@ -130,10 +130,14 @@ def main():
         
         # print 'Press any button to continue'
         # raw_input()
-        
 
-if __name__ == "__main__":
+
+def testAllCases():
     for dubins_case in xrange(1, 16):
         main()
     print 'Press any button to continue'
     raw_input()
+        
+
+if __name__ == "__main__":
+    testAllCases()

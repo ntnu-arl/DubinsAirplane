@@ -10,8 +10,9 @@ from PlottingTools import plot3
 import numpy as np
 import time
 
+
 pi = np.pi
-dubins_case = 8
+dubins_case = 10
 verbose_flag = 0
 plot_flag = 1
 
@@ -35,7 +36,7 @@ class VehicleParameters(object):
 def main():
     # Example main for the 16 cases Dubins Airplane paths
     t0 = time.clock()
-    VehiclePars = VehicleParameters( 15, pi/4, pi/12 ) 
+    VehiclePars = VehicleParameters( 15, pi/4, pi/6 ) 
     ExFlags = ExecutionFlags( verbose_flag,plot_flag )
     
     flag_nc = 0
@@ -127,9 +128,12 @@ def main():
             print '### Dubins airplane solution plot'
             plot3( path_dubins_airplane[:,0], path_dubins_airplane[:,1], path_dubins_airplane[:,2], 'o', 'g' )
         
-        print 'Press any button to continue'
-        raw_input()
+        # print 'Press any button to continue'
+        # raw_input()
         
 
 if __name__ == "__main__":
-    main()
+    for dubins_case in xrange(1, 16):
+        main()
+    print 'Press any button to continue'
+    raw_input()

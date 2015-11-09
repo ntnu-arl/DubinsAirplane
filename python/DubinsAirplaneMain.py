@@ -9,7 +9,7 @@ from DubinsAirplaneFunctions import *
 from PlottingTools import plot3
 import numpy as np
 import time
-
+import sys
 
 pi = np.pi
 dubins_case = 0
@@ -107,9 +107,16 @@ def main():
         start_node  = np.array( [0,   0,   -150, 0*pi/180,     VehiclePars.Vairspeed_0] )
         end_node    = np.array( [100, -100,-100, -90*pi/180,   VehiclePars.Vairspeed_0] )
     elif dubins_case == 0: # for fixing errors
-        print '### Path Type: intermediate climb LSRL (descend at end)'
-        start_node  = np.array( [0,   0,   0,     VehiclePars.Vairspeed_0] )
-        end_node    = np.array( [40, 140,  199, 11*pi/9, VehiclePars.Vairspeed_0] )
+        print '### Path Type: for fixing errors'
+        start_node  = np.array( [0,   0,   0, 0, VehiclePars.Vairspeed_0] )
+        end_node    = np.array( [40, -140,  100, 11*pi/9, VehiclePars.Vairspeed_0] ) # LSRL
+        #end_node    = np.array( [40, -140,  140, 2*pi/9, VehiclePars.Vairspeed_0] ) # LSLR
+
+        #end_node    = np.array( [40, 140,  140, 11*pi/9, VehiclePars.Vairspeed_0] ) # RSLR
+        #end_node    = np.array( [40, 140,  140, 1*pi/9, VehiclePars.Vairspeed_0] ) # RSRL
+
+        #end_node    = np.array( [40, 140,  -140, 11*pi/9, VehiclePars.Vairspeed_0] ) # RLSR
+        #end_node    = np.array( [40, -140,  -100, 11*pi/9, VehiclePars.Vairspeed_0] ) # LRSL        
         
     if dubins_case > 16:
         flag_nc = 1
@@ -119,6 +126,17 @@ def main():
         print '### Case loaded.'
         print '### computing path...'
         R_min = MinTurnRadius_DubinsAirplane( VehiclePars.Vairspeed_0, VehiclePars.Bank_max )
+        
+        # Check if start and end node are too close. Since spiral-spiral-spiral (or curve-curve-curve) paths are not considered, the optimal path may not be found... (see Shkel, Lumelsky, 2001, Classification of the Dubins set, Prop. 5/6). Below is a conservative bound, which seems (by experiments) to assure a unproblematical computation of the dubins path.
+        if ( np.linalg.norm(end_node[0:2] - start_node[0:2],ord=2) < 6*R_min ):
+            print "!!!!!!!!!!!!!!!!"
+            print "Conservative condition (end_node[0:2] - start_node[0:2],ord=2) < 6*R_min) not fulfilled!"
+            print "Start and end pose are close together. Path of type RLR, LRL may be optimal"
+            print "May fail to compute optimal path! Aborting"
+            print "!!!!!!!!!!!!!!!!"
+            sys.exit()
+        
+        
         DubinsAirplaneSolution = DubinsAirplanePath( start_node, end_node, R_min, VehiclePars.Gamma_max )
         if ExFlags.verbose :
             PrintSolutionAgainstMATLAB( DubinsAirplaneSolution )

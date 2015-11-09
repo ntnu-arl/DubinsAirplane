@@ -809,7 +809,7 @@ def DubinsAirplanePath(init_conf=None, final_conf=None, R_min=None, gamma_max=No
             DubinsAirplaneSolution['k_ei'] = 0
             # end spiral
             DubinsAirplaneSolution['c_e'] = cre - np.array([0, 0, -dist3*tan(gam)]).T
-            DubinsAirplaneSolution['psi_e'] = (anglend-pi/2-psii)
+            DubinsAirplaneSolution['psi_e'] = anglend-pi/2-psii
             DubinsAirplaneSolution['lamda_e'] = 1
             DubinsAirplaneSolution['k_e'] = 0
             # hyperplane H_s: switch from first to second spiral

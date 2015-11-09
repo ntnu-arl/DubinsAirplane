@@ -109,7 +109,7 @@ def main():
     elif dubins_case == 0: # for fixing errors
         print '### Path Type: intermediate climb LSRL (descend at end)'
         start_node  = np.array( [0,   0,   0,     VehiclePars.Vairspeed_0] )
-        end_node    = np.array( [40, 140,  199, 11*pi/9, VehiclePars.Vairspeed_0] )
+        np.array( [40, 140,  199, 11*pi/9, VehiclePars.Vairspeed_0] )
         
     if dubins_case > 16:
         flag_nc = 1

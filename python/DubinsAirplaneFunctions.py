@@ -214,10 +214,11 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
             cli = zi + R_min * np.dot( rotz( -pi/2 ), np.array( [cos(anglinter), sin(anglinter), 0] ).T )
             L = computeDubinsLSR( R_min, cli, cre, anglinter, anglend )
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
+            
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -240,9 +241,9 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -266,9 +267,9 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -296,9 +297,9 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -338,9 +339,9 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -364,9 +365,9 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -391,9 +392,9 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -417,10 +418,10 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
             L = computeDubinsLSR( R_min, cls, cri, anglstart, anglinter )
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
-            if error > 0: 
-                psi2 = psi
+            if error > 0:
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         

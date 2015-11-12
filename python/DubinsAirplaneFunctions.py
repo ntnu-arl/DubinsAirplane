@@ -208,16 +208,17 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
         cre = ze + R_min * np.dot( rotz( pi/2 ), np.array( [cos(anglend), sin(anglend), 0] ).T )
         L = computeDubinsRSR( R_min, crs, cre, anglstart, anglend )
         error = L - fabs( hdist / tan( gamma_max ) )
-        while fabs( error ) > 0.1:
+        while fabs( error ) > 0.001:
             zi = crs + np.dot( rotz( psi ),( zs-crs ) )
             anglinter = anglstart + psi
             cli = zi + R_min * np.dot( rotz( -pi/2 ), np.array( [cos(anglinter), sin(anglinter), 0] ).T )
             L = computeDubinsLSR( R_min, cli, cre, anglinter, anglend )
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
+            
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -231,8 +232,8 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
         crs = zs + R_min * np.dot( rotz( pi / 2 ), np.array( [cos(anglstart), sin(anglstart), 0] ).T )
         cle = ze + R_min * np.dot( rotz( -pi / 2 ), np.array( [cos(anglend), sin(anglend), 0] ).T )
         L = computeDubinsRSL( R_min, crs, cle, anglstart, anglend )
-        
-        while fabs( error ) > 0.1:
+        error = L - fabs( hdist / tan( gamma_max ) )
+        while fabs( error ) > 0.001:
             zi = crs + np.dot( rotz( psi ), ( zs-crs ) )
             anglinter = anglstart + psi
             cli = zi + R_min * np.dot( rotz( -pi / 2 ), np.array( [cos(anglinter), sin(anglinter), 0] ).T )
@@ -240,9 +241,9 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -258,7 +259,7 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
         L = computeDubinsLSR( R_min, cls, cre, anglstart, anglend )
         error = L - fabs( hdist / tan( gamma_max ) )
         
-        while fabs( error ) > 0.1:
+        while fabs( error ) > 0.001:
             zi = cls + np.dot( rotz( -psi ), ( zs-cls ) )
             anglinter = anglstart - psi
             cri = zi + R_min * np.dot( rotz( pi / 2 ), np.array( [cos(anglinter), sin(anglinter), 0] ).T )
@@ -266,9 +267,9 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -286,7 +287,7 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
         L = computeDubinsLSL( R_min, cls, cle, anglstart, anglend )
         error = L - fabs( hdist / tan( gamma_max ) )
         
-        while fabs( error ) > 0.1:
+        while fabs( error ) > 0.001:
             zi = cls + np.dot( rotz( -psi ), ( zs-cls ) )
             anglinter = anglstart - psi
             cri = zi + R_min * np.dot( rotz( pi / 2 ), np.array( [cos(anglinter), sin(anglinter), 0 ] ).T )
@@ -296,9 +297,9 @@ def addSpiralBeginning(zs=None, anglstart=None, ze=None, anglend=None, R_min=Non
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -330,7 +331,7 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
         L = computeDubinsRSR( R_min, crs, cre, anglstart, anglend )
         error = L - fabs( hdist / tan( gamma_max ) )
         
-        while fabs( error ) > 0.1:
+        while fabs( error ) > 0.001:
             zi = cre + np.dot( rotz( -psi ), ( ze-cre ) )
             anglinter = anglend - psi
             cli = zi + R_min * np.dot( rotz( -pi / 2 ), np.array( [cos(anglinter), sin(anglinter), 0] ).T )
@@ -338,9 +339,9 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -356,7 +357,7 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
         L = computeDubinsRSL( R_min, crs, cle, anglstart, anglend )
         error = L - fabs( hdist / tan( gamma_max ) )
         
-        while fabs( error ) > 0.1:
+        while fabs( error ) > 0.001:
             zi = cle + np.dot( rotz( psi ), ( ze-cle ) )
             anglinter = anglend + psi
             cri = zi + R_min * np.dot( rotz( pi / 2 ), np.array( [cos(anglinter), sin(anglinter), 0] ).T )
@@ -364,9 +365,9 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -383,7 +384,7 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
         L = computeDubinsLSR( R_min, cls, cre, anglstart, anglend )
         error = L - fabs( hdist / tan( gamma_max ))
         
-        while fabs( error ) > 0.1:
+        while fabs( error ) > 0.001:
             zi = cre + np.dot( rotz( -psi ), ( ze-cre ) )
             anglinter = anglend - psi
             cli = zi + R_min * np.dot( rotz( -pi / 2 ), np.array( [cos(anglinter), sin(anglinter), 0] ).T )
@@ -391,9 +392,9 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
             if error > 0:
-                psi2 = psi
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -410,17 +411,17 @@ def addSpiralEnd(zs=None, anglstart=None, ze=None, anglend=None, R_min=None, gam
         L = computeDubinsLSL( R_min, cls, cle, anglstart, anglend )
         error = L - fabs( hdist / tan( gamma_max ) )
         
-        while fabs( error ) > 0.1: 
+        while fabs( error ) > 0.001: 
             zi = cle + np.dot( rotz( psi ), ( ze-cle ) )
             anglinter = anglend + psi
             cri = zi + R_min * np.dot( rotz( pi / 2 ), np.array( [cos(anglinter), sin(anglinter), 0] ).T )
             L = computeDubinsLSR( R_min, cls, cri, anglstart, anglinter )
             error = ( L + fabs( psi ) * R_min ) - fabs( hdist / tan( gamma_max ) )
             
-            if error > 0: 
-                psi2 = psi
+            if error > 0:
+                psi2 = (179*psi2+psi)/180
             else:
-                psi1 = psi
+                psi1 = (179*psi1+psi)/180
             
             psi = ( psi1 + psi2 ) / 2
         
@@ -809,7 +810,7 @@ def DubinsAirplanePath(init_conf=None, final_conf=None, R_min=None, gamma_max=No
             DubinsAirplaneSolution['k_ei'] = 0
             # end spiral
             DubinsAirplaneSolution['c_e'] = cre - np.array([0, 0, -dist3*tan(gam)]).T
-            DubinsAirplaneSolution['psi_e'] = -psii
+            DubinsAirplaneSolution['psi_e'] = anglend-pi/2-psii
             DubinsAirplaneSolution['lamda_e'] = 1
             DubinsAirplaneSolution['k_e'] = 0
             # hyperplane H_s: switch from first to second spiral
@@ -847,7 +848,7 @@ def DubinsAirplanePath(init_conf=None, final_conf=None, R_min=None, gamma_max=No
             DubinsAirplaneSolution['k_ei'] = 0
             # end spiral
             DubinsAirplaneSolution['c_e'] = cle - np.array([0, 0, -dist3*tan(gam)]).T
-            DubinsAirplaneSolution['psi_e'] = psii
+            DubinsAirplaneSolution['psi_e'] = anglend+pi/2+psii
             DubinsAirplaneSolution['lamda_e'] = -1
             DubinsAirplaneSolution['k_e'] = 0
             # hyperplane H_s: switch from first to second spiral
@@ -885,7 +886,7 @@ def DubinsAirplanePath(init_conf=None, final_conf=None, R_min=None, gamma_max=No
             DubinsAirplaneSolution['k_ei'] = 0
             # end spiral
             DubinsAirplaneSolution['c_e'] = cre - np.array([0, 0, -dist3*tan(gam)]).T
-            DubinsAirplaneSolution['psi_e'] = -psii
+            DubinsAirplaneSolution['psi_e'] = anglend-pi/2-psii
             DubinsAirplaneSolution['lamda_e'] = 1
             DubinsAirplaneSolution['k_e'] = 0
             # hyperplane H_s: switch from first to second spiral
@@ -927,7 +928,7 @@ def DubinsAirplanePath(init_conf=None, final_conf=None, R_min=None, gamma_max=No
             DubinsAirplaneSolution['k_ei'] = 0
             # end spiral
             DubinsAirplaneSolution['c_e'] = cle - np.array([0, 0, -dist3*tan(gam)]).T
-            DubinsAirplaneSolution['psi_e'] = psii
+            DubinsAirplaneSolution['psi_e'] = anglend+pi/2+psii
             DubinsAirplaneSolution['lamda_e'] = -1
             DubinsAirplaneSolution['k_e'] = 0
             # hyperplane H_s: switch from first to second spiral
